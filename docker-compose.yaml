@@ -1,0 +1,24 @@
+version: "3.9"
+
+services:
+  parser-service:
+    build: ./parser
+    container_name: parser-service
+    ports:
+      - "9000:9000"
+    networks:
+      - app-network
+
+  fastpi-service:
+    build: ./server
+    container_name: fastapi-server
+    ports:
+      - "8000:8000"
+    depends_on:
+      - parser-service
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

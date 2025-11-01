@@ -3,13 +3,8 @@ import re
 import json
 from typing import List, Dict, Any, Union
 
-DATA_FILE_PATH = "data/noname.txt"
-OUTPUT_FILE_PATH = "output/output.json"
-
-def parse_personal_info_report() :
-    with open(DATA_FILE_PATH, 'r', encoding = "cp949") as f :
-        full_text = f.read()
-        lines = full_text.splitlines()
+def parse_personal_info_report(full_text : str) -> Dict :
+    lines = full_text.splitlines()
         
     report_data = {}
     
@@ -28,17 +23,11 @@ def parse_personal_info_report() :
             personal_info[key] = match.group(1).strip()
             
     report_data["개인정보"] = personal_info
-
-    save_file_name= "output/output.json"
-    with open(save_file_name, 'w', encoding="utf-8") as f :
-        json_string = json.dumps(report_data,ensure_ascii = False, indent = 4)
-        f.write(json_string)
+    return report_data
 
 
-def parse_graduation() :
-    with open(DATA_FILE_PATH,'r',encoding='cp949') as f :
-        full_text = f.read()
-        lines = full_text.splitlines()
+def parse_graduation(full_text : str) -> Dict :
+    lines = full_text.splitlines()
         
     grad_block_match = re.search(
         r"졸업\s*판정(?P<block>[\s\S]*?)(?=\n\s*(?:전공|교양|전공내역|교양내역|금학기|졸업요건|모의기|$))",
@@ -68,19 +57,17 @@ def parse_graduation() :
         flags=re.M | re.X
     )
     
-    rows = {}
+    report_data = {}
     for m in row_re.finditer(grad_block) :
         gd = m.groupdict()
         row_label = gd.pop("row")
-        rows[row_label] = gd
+        report_data[row_label] = gd
         
-    merge_data_to_output(OUTPUT_FILE_PATH, "졸업판정",rows)
+    return report_data
     
     
-def parse_class_info() :
-    with open(DATA_FILE_PATH,'r',encoding = "cp949") as f:
-        full_text = f.read()
-        lines = full_text.splitlines()
+def parse_class_info(full_text : str) -> Dict :
+    lines = full_text.splitlines()
 
     course_block_match = re.search(
         r"교양\s*/?\s*기타\s*/?\s*금학기\s*수강학점\s*\t*\s*전공학점[\t ]*\n(?P<block>[\s\S]*?)(?=\n\s*(?:졸업\s*필수|졸업필수|연락처|상담자|$))",
@@ -102,7 +89,7 @@ def parse_class_info() :
     )
     
     results = []
-    current_cateogry = None
+    current_category = None
     
     for line in course_block.splitlines() :
         if re.search(r"(필수교과|배분이수|자유이수|기타)",line) :
@@ -116,19 +103,17 @@ def parse_class_info() :
             row["전공명"] = row["전공명"].replace("#", "").strip()
 
             results.append(row)
+            
+    return {"수강과목" : results}
         
-    merge_data_to_output(OUTPUT_FILE_PATH,"수강과목",results)
         
-        
-def merge_data_to_output(json_path : str,key_name : str, item : Union[Dict[str,Any]]) :
-    with open(json_path, 'r', encoding = "utf-8") as f :
-        data = json.load(f)
-    
-    data[key_name] = item
-    output_path = json_path
-    
-    with open(json_path, 'w', encoding="utf-8") as f :
-        json_string = json.dumps(data,ensure_ascii = False, indent = 4)
-        f.write(json_string)
-        
-    print(f"기존 {json_path}에 merge 완료되었습니다 !")
+def merge_data_to_output(base_data : dict, key_name : str, item : dict | list) -> Dict :
+    base_data[key_name] = item
+    return base_data
+
+def text_to_parsed_json(full_text : str) -> Dict :
+    result = {}
+    result = merge_data_to_output(result, "개인정보", parse_personal_info_report(full_text))
+    result = merge_data_to_output(result, "졸업판정" ,parse_graduation(full_text))
+    result = merge_data_to_output(result, "수강과목", parse_class_info(full_text))
+    return result
