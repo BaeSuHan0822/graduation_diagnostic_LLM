@@ -8,10 +8,7 @@ authors = [
 readme = "README.md"
 requires-python = ">=3.11,<3.12"
 dependencies = [
-    "opendataloader-pdf (>=1.1.2,<2.0.0)",
-    "pymupdf (>=1.26.4,<2.0.0)",
-    "pandas (>=2.3.3,<3.0.0)",
-    "openpyxl (>=3.1.5,<4.0.0)"
+    "fastapi (>=0.120.4,<0.121.0)"
 ]
 
 [tool.poetry]
