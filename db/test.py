@@ -1,22 +1,22 @@
-from langchain.agents import create_agent
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_ollama import ChatOllama
 
-def get_weather(city : str) -> str :
-    """_summary_
+model = ChatOllama(model = "gemma2:2b")
 
-    Args:
-        city (str): _description_
+# print("------Prompt from Template------")
+# template = "Tell me a joke about {topic}."
+# prompt_template = ChatPromptTemplate.from_template(template)
 
-    Returns:
-        str: _description_
-    """
-    return f"It's always sunny in {city}"
+# prompt = prompt_template.invoke({"topic" : "Cats"})
+# result = model.invoke(prompt)
+# print(result.content)
 
-agent = create_agent(
-    model = "claude-sonnet-20240229",
-    tools = [get_weather],
-    system_prompt="You are a helpful assistant"
-)
+print("-----Prompt with Multiple Placeholders-----")
+template_multiple = """You are a helpful assistant.
+Human : Tell me a {adjactive} short story about a {animal}.
+Assistant : """
+prompt_template = ChatPromptTemplate.from_template(template_multiple)
+prompt = prompt_template.invoke({"adjactive" : "funny", "animal" : "panda"})
 
-agent.invoke({
-    "messages" : [{"role" : "user", "content" : "what is the weather in sf"}]
-})
+result = model.invoke(prompt)
+print(result.content)
