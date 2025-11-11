@@ -1,1 +1,3 @@
-db/
+chroma_db/
+curriculum_db/
+student_db/
