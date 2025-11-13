@@ -1703,6 +1703,23 @@ together = ["langchain-together"]
 xai = ["langchain-xai"]
 
 [[package]]
+name = "langchain-chroma"
+version = "1.0.0"
+description = "An integration package connecting Chroma and LangChain."
+optional = false
+python-versions = "<4.0.0,>=3.10.0"
+groups = ["main"]
+files = [
+    {file = "langchain_chroma-1.0.0-py3-none-any.whl", hash = "sha256:b7adb991090f066f8d5e746a2d338de3116b192cec3990deef3052b7ea07324c"},
+    {file = "langchain_chroma-1.0.0.tar.gz", hash = "sha256:ee82c6fbd0c94e5e9942e3b9302f69deea6c58c0e957ff16de6066d896d7a34a"},
+]
+
+[package.dependencies]
+chromadb = ">=1.0.20,<2.0.0"
+langchain-core = ">=1.0.0,<2.0.0"
+numpy = {version = ">=1.26.0", markers = "python_version < \"3.13\""}
+
+[[package]]
 name = "langchain-classic"
 version = "1.0.0"
 description = "Building applications with LLMs through composability"
@@ -4283,6 +4300,24 @@ files = [
 ]
 
 [[package]]
+name = "rank-bm25"
+version = "0.2.2"
+description = "Various BM25 algorithms for document ranking"
+optional = false
+python-versions = "*"
+groups = ["main"]
+files = [
+    {file = "rank_bm25-0.2.2-py3-none-any.whl", hash = "sha256:7bd4a95571adadfc271746fa146a4bcfd89c0cf731e49c3d1ad863290adbe8ae"},
+    {file = "rank_bm25-0.2.2.tar.gz", hash = "sha256:096ccef76f8188563419aaf384a02f0ea459503fdf77901378d4fd9d87e5e51d"},
+]
+
+[package.dependencies]
+numpy = "*"
+
+[package.extras]
+dev = ["pytest"]
+
+[[package]]
 name = "referencing"
 version = "0.37.0"
 description = "JSON Referencing + Python"
@@ -6108,4 +6143,4 @@ cffi = ["cffi (>=1.17,<2.0) ; platform_python_implementation != \"PyPy\" and pyt
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.11,<3.12"
-content-hash = "b6d6a868030e4766312e8bde8ac55b0483b683a68e63b469908a513e8d87541f"
+content-hash = "e939c1da94e979e225e47115e31691c14fbf9316ad8a4539b709c2a4db500558"
