@@ -18,6 +18,7 @@
 | **langchain-community** | 0.4.1 | MIT | Community extensions and integrations |
 | **langchain-core** | 1.0.2 | MIT | Core building blocks for LangChain |
 | **langchain-huggingface** | 1.0.0 | MIT | Hugging Face integration for embeddings |
+| **langchain-chroma** | 1.0.0 | MIT | Vector DB for embeddings |
 | **langchain-ollama** | 1.0.0 | MIT | Ollama local model interface |
 | **langchain-text-splitters** | 1.0.0 | MIT | Text chunking utilities for LLM pipelines |
 | **chromadb** | 1.3.0 | Apache License 2.0 | Vector database for embeddings |
@@ -31,7 +32,7 @@
 
 ---
 
-## 🤖 사용된 AI 모델
+## 🤖 사용된 AI 모델들
 
 이 프로젝트는 **KakaoBrain**이 공개한 한국어 임베딩 모델을 사용합니다.
 
@@ -48,11 +49,24 @@
 
 ---
 
+이 프로젝트는 다음 AI 임베딩 모델을 사용합니다.
+
+### 🔹 Model Information
+- **Model Name:** `intfloat/multilingual-e5-large`  
+- **Publisher:** [intfloat](https://huggingface.co/intfloat)  
+- **Platform:** [Hugging Face Hub](https://huggingface.co/intfloat/multilingual-e5-large)  
+- **License:** MIT License
+- **Description:**  
+  다국어 문서 검색 및 의미적 유사도(sSemantic similarity) 작업에 최적화된 임베딩 모델입니다.
+  본 프로젝트에서는 Chroma 기반 벡터 DB 구축 및 텍스트 유사도 계산에 사용되었습니다.
+> © intfloat. Licensed under the MIT License.
+
+
 ## 📈 License Distribution Summary
 
 | License Type | Components |
 |---------------|-------------|
-| **MIT License** | fastapi, pdfminer.six, pdfplumber, langchain, langchain-classic, langchain-community, langchain-core, langchain-huggingface, langchain-ollama, langchain-text-splitters, Poetry, pip-licenses |
+| **MIT License** | fastapi, pdfminer.six, pdfplumber, langchain, langchain-classic, langchain-community, langchain-core, langchain-huggingface, langchain-ollama, langchain-chroma, langchain-text-splitters, intfloat/multilingual-e5-large, Poetry, pip-licenses |
 | **Apache License 2.0** | chromadb, sentence-transformers, transformers, datasets, Docker, pypdfium2 (partial), kakaocorp/kanana-nano-2.1b-embedding |
 | **BSD-3-Clause** | pypdfium2 (dual licensed) |
 

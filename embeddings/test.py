@@ -1,3 +1,5 @@
+### 이 코드는 사용하지 않습니다
+
 import os
 from Kanana import Custom_Kanana
 from langchain_chroma import Chroma
