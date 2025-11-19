@@ -52,6 +52,7 @@ vector_store = Chroma.from_documents(
     documents = splits,
     embedding= embedding_function,
     persist_directory= output_path,
+    collection_name = "computer_curriculum_2022",
     collection_metadata = {"hnsw:space" : "cosine"}
 )
 
