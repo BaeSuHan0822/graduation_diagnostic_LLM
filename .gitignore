@@ -2,3 +2,4 @@ chroma_db/
 curriculum_db/
 student_db/
 pdfFiles/
+embeddings/.env

@@ -10,39 +10,38 @@ humanitas_files = os.listdir(humanitas_file_path)
 computer_output_path = os.path.join(PATH,"curriculum_db","computer_science")
 humanitas_output_path = os.path.join(PATH,"curriculum_db","humanitas")
 
-def clean_text(text):
-    if not text:
-        return ""
-    
-    # (1) 불필요한 특수문자 제거 (◩, ■, 이상한 공백 등)
-    text = re.sub(r'[◩■●•]', '', text) 
-    
-    # (2) 페이지 번호나 헤더 텍스트 패턴 제거 (예: "301 2022학년도...")
-    # (이 부분은 crop으로 대부분 해결되지만 혹시 몰라 추가)
-    text = re.sub(r'\d{2,3}\s+20\d{2}학년도 교육과정', '', text)
+def table_to_markdown(table_data):
+    if not table_data: return ""
+    # None 값을 빈 문자열로 변환
+    rows = [[str(cell) if cell else "" for cell in row] for row in table_data]
+    if not rows: return ""
 
-    # (3) 문장 중간의 줄바꿈 없애기 (한글 뒤에 오는 줄바꿈만 공백으로 변경)
-    # "정보를\n수집하고" -> "정보를 수집하고"
-    text = text.replace("\n", " ") 
+    markdown = ""
+    # (1) 헤더 작성
+    markdown += "| " + " | ".join(rows[0]) + " |\n"
+    # (2) 구분선 작성 (|---|---|...)
+    markdown += "| " + " | ".join(["---"] * len(rows[0])) + " |\n"
+    # (3) 내용 작성
+    for row in rows[1:]:
+        markdown += "| " + " | ".join(row) + " |\n"
     
-    # (4) 다중 공백을 하나로 줄이기
-    text = re.sub(r'\s+', ' ', text).strip()
-    
-    return text
+    return markdown + "\n"
 
 for file in computer_files :
     if file.startswith(".") :
         continue
-    name = str(file.split(".")[0]) + ".txt"
+    name = os.path.splitext(file)[0] + ".txt"
     output_path = os.path.join(computer_output_path,name)
     print(os.path.join(computer_file_path,file))
     
-    with pdfplumber.open(os.path.join(computer_file_path,file)) as F :
+    with pdfplumber.open(os.path.join(computer_file_path,file)) as PDF :
         full_text = ""
         
-        for i,page in enumerate(F.pages) :
-            text = page.extract_text()
-            full_text += text + "\n"
+        for page in PDF.pages :
+            tables = page.extract_table()
+            
+            for table in tables :
+                print(table)
             
     with open(output_path,"w",encoding = "utf-8") as f :
         f.write(full_text)
