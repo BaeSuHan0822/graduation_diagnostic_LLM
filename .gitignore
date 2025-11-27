@@ -3,3 +3,7 @@ curriculum_db/
 student_db/
 pdfFiles/
 embeddings/.env
+noname.txt
+noname.xlsx
+output.txt
+parsed_result.json

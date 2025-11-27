@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI,Request
 from parser_logic import text_to_parsed_json
 
 app = FastAPI()
@@ -8,7 +8,9 @@ async def parse_text(request : Request) :
     body = await request.json()
     text = body.get("text","")
     text = text.replace("\r\n","\n").replace("\r","\n")
-    return text_to_parsed_json(text)
+    
+    parsed_text = text_to_parsed_json(text)
+    return parsed_text
 
 @app.get("/health")
 def health() :

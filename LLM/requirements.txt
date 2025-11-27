@@ -1,0 +1,35 @@
+fastapi>=0.120.4,<0.121.0
+uvicorn[standard]>=0.29,<0.31
+
+pdfplumber>=0.11.7,<0.12.0
+
+# LangChain 0.2.x 생태계 (안정)
+langchain>=0.2.10,<0.3.0
+langchain-core>=0.2.30,<0.3.0
+langchain-community>=0.2.8,<0.3.0
+
+# VectorStore: Chroma + LangChain-Chroma 0.1.x 조합
+chromadb>=0.4.24,<0.5.0
+langchain-chroma>=0.1.4,<0.2.0
+
+# Ollama 연동
+langchain-ollama>=0.1.0,<0.2.0
+
+# HuggingFace embedding
+sentence-transformers>=3.0,<3.1
+transformers>=4.41,<4.43
+huggingface-hub>=0.23,<0.24
+torch>=2.2,<2.3
+
+# LlamaParse (PDF 파싱)
+llama-parse>=0.6.81,<0.7.0
+
+# Unstructured (파일 처리)
+unstructured>=0.18.20,<0.19.0
+
+# Utilities
+markdown>=3.10,<4.0
+pandas>=2.3.3,<3.0.0
+openpyxl>=3.1.5,<4.0.0
+tabulate>=0.9.0,<0.10.0
+pip-licenses>=5.5.0,<6.0.0

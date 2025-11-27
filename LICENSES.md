@@ -21,11 +21,18 @@
 | **langchain-chroma** | 1.0.0 | MIT | Vector DB for embeddings |
 | **langchain-ollama** | 1.0.0 | MIT | Ollama local model interface |
 | **langchain-text-splitters** | 1.0.0 | MIT | Text chunking utilities for LLM pipelines |
+| **llama-parse** | 0.6.81 | MIT | LlamaIndex managed parser for RAG-ready document payloads |
 | **chromadb** | 1.3.0 | Apache License 2.0 | Vector database for embeddings |
 | **sentence-transformers** | 5.1.2 | Apache License 2.0 | Sentence embeddings via Transformers |
 | **transformers** | 4.57.1 | Apache License 2.0 | Hugging Face Transformers library |
+| **tokenizers** | 0.22.1 | Apache License 2.0 | Fast Rust-backed tokenizer primitives |
 | **datasets** | 4.4.1 | Apache License 2.0 | Dataset loading & preprocessing library |
+| **unstructured** | 0.18.20 | Apache License 2.0 | Document parsing & chunking toolkit |
 | **Docker** | 27.x | Apache License 2.0 | Container engine for application orchestration |
+| **markdown** | 3.10 | BSD-3-Clause | Python-Markdown implementation for HTML export |
+| **pandas** | 2.3.3 | BSD-3-Clause | Dataframe toolkit for tabular outputs |
+| **openpyxl** | 3.1.5 | MIT | Excel workbook reader/writer |
+| **tabulate** | 0.9.0 | MIT | Pretty-print tables for reports |
 | **Poetry** | 1.8.x | MIT | Dependency and virtual environment manager |
 | **kakaocorp/kanana-nano-2.1b-embedding** | — | Apache License 2.0 | Korean embedding model by KakaoBrain on Hugging Face Hub |
 | **pip-licenses** | 5.5.0 | MIT | Generate dependency license reports |
@@ -66,9 +73,9 @@
 
 | License Type | Components |
 |---------------|-------------|
-| **MIT License** | fastapi, pdfminer.six, pdfplumber, langchain, langchain-classic, langchain-community, langchain-core, langchain-huggingface, langchain-ollama, langchain-chroma, langchain-text-splitters, intfloat/multilingual-e5-large, Poetry, pip-licenses |
-| **Apache License 2.0** | chromadb, sentence-transformers, transformers, datasets, Docker, pypdfium2 (partial), kakaocorp/kanana-nano-2.1b-embedding |
-| **BSD-3-Clause** | pypdfium2 (dual licensed) |
+| **MIT License** | fastapi, pdfminer.six, pdfplumber, langchain, langchain-classic, langchain-community, langchain-core, langchain-huggingface, langchain-ollama, langchain-chroma, langchain-text-splitters, llama-parse, openpyxl, tabulate, intfloat/multilingual-e5-large, Poetry, pip-licenses |
+| **Apache License 2.0** | chromadb, sentence-transformers, transformers, tokenizers, datasets, unstructured, Docker, pypdfium2 (partial), kakaocorp/kanana-nano-2.1b-embedding |
+| **BSD-3-Clause** | pypdfium2 (dual licensed), markdown, pandas |
 
 ---
 

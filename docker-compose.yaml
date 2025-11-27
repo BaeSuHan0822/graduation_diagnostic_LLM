@@ -3,21 +3,29 @@ version: "3.9"
 services:
   parser-service:
     build: ./parser
-    container_name: parser-service
+    container_name: parser-server
     ports:
       - "9000:9000"
     networks:
       - app-network
 
-  fastpi-service:
+  main-server:
     build: ./server
-    container_name: fastapi-server
+    container_name: main-server
     ports:
       - "8000:8000"
     depends_on:
       - parser-service
+      - llm-parsing-server
     networks:
       - app-network
+
+  llm-parsing-server:
+    build: ./llm_friendly_parsing
+    container_name: llm-parsing-server
+    networks:
+      - app-network
+    
 
 networks:
   app-network:

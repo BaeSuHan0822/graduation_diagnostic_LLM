@@ -98,7 +98,6 @@ def parse_class_info(full_text : str) -> Dict :
         m = COURSE_RE.search(line)
         if m :
             row = m.groupdict()
-            row['이수구분'] = current_category
             row["전공명"] = row["전공명"].replace("#", "").strip()
 
             results.append(row)
